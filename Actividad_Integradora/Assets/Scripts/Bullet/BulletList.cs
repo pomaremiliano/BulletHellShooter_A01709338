@@ -11,7 +11,7 @@ public class BulletList : MonoBehaviour
         bullets = new List<GameObject>();
     }
 
-    public static GameObject getBulletList()
+    public static GameObject GetBulletList()
     {
         for (int i = 0; i < bullets.Count; i++)
         {

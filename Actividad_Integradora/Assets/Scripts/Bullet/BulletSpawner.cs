@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -31,7 +30,7 @@ public class BulletSpawner : MonoBehaviour
 
     public TextMeshProUGUI patternText;
 
-    void timerUpdate(float time)
+    void TimerUpdate(float time)
     {
         if (timerText != null)
         {
@@ -47,19 +46,27 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
+    IEnumerator StartTimer()
+    {
+        float time = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            time++;
+            TimerUpdate(time);
+        }
+    }
 
     void Start()
     {
         bulletTimer = bulletCoolDown;
         rotations = new float[numBullets];
         currentSpiral = minRotation;
-        currentPattern = 0;
-        timerUpdate(0);
 
         StartCoroutine(ChangePattern());
         StartCoroutine(CountBullets());
+        StartCoroutine(StartTimer());
     }
-
     void Update()
     {
         if (bulletTimer <= 0)
@@ -67,26 +74,27 @@ public class BulletSpawner : MonoBehaviour
             SpawnBullets();
             bulletTimer = bulletCoolDown;
             bulletTimer += Time.deltaTime;
-            timerUpdate(bulletTimer);
         }
         else
         {
             bulletTimer -= Time.deltaTime;
-            timerUpdate(bulletTimer);
+
         }
 
     }
 
     IEnumerator ChangePattern()
     {
+        currentPattern = 1;
         while (true)
         {
+            PatternUpdate((int)currentPattern);
             yield return new WaitForSeconds(10f);
             currentPattern++;
             PatternUpdate((int)currentPattern);
-            if (currentPattern > 3)
+            if (currentPattern >= 5)
             {
-                currentPattern = 0;
+                currentPattern = 1;
             }
         }
     }
@@ -136,20 +144,20 @@ public class BulletSpawner : MonoBehaviour
     {
         switch (currentPattern)
         {
-            case 0:
-                return CirclePattern();
             case 1:
-                return SpiralPattern();
+                return CirclePattern();
             case 2:
-                return ConvergePattern();
+                return SpiralPattern();
             case 3:
+                return ConvergePattern();
+            case 4:
                 return RandomPattern();
             default:
                 return CirclePattern();
         }
     }
 
-    void bulletCountUpdate(int countBullets)
+    void BulletCountUpdate(int countBullets)
     {
         if (bulletCount != null)
         {
@@ -162,7 +170,7 @@ public class BulletSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5f);
-            bulletCountUpdate(BulletList.bullets.Count);
+            BulletCountUpdate(BulletList.bullets.Count);
         }
     }
 
@@ -172,10 +180,9 @@ public class BulletSpawner : MonoBehaviour
         rotations = Patterns();
 
         GameObject[] bullets = new GameObject[numBullets];
-        //GameObject[] BulletList = new GameObject[numBullets];
         for (int i = 0; i < numBullets; i++)
         {
-            bullets[i] = BulletList.getBulletList();
+            bullets[i] = BulletList.GetBulletList();
             if (bullets[i] == null)
             {
                 bullets[i] = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
@@ -187,7 +194,7 @@ public class BulletSpawner : MonoBehaviour
             b.speed = bulletSpeed;
             b.velocity = bulletVelocity;
         }
-        bulletCountUpdate(numBullets);
+        BulletCountUpdate(numBullets);
         return bullets;
 
 

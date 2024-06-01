@@ -11,10 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float turnSpeed = 0.0f;
 
-    void Start()
-    {
-
-    }
 
     void Update()
     {

@@ -356,7 +356,6 @@
 "Assets/Scripts/Bullet/Bullet.cs"
 "Assets/Scripts/Bullet/BulletList.cs"
 "Assets/Scripts/Bullet/BulletSpawner.cs"
-"Assets/Scripts/Player/Player.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 -langversion:9.0
 /deterministic
