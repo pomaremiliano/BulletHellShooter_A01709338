@@ -120,9 +120,9 @@ public class BulletSpawner : MonoBehaviour
         return rotations;
     }
 
-    public float[] ConvergePattern()
+    public float[] DirectPattern()
     {
-        float angle = 360.0f;
+        float angle = 90.0f;
         for (int i = 0; i < numBullets; i++)
         {
             rotations[i] = minRotation + (angle * i);
@@ -149,7 +149,7 @@ public class BulletSpawner : MonoBehaviour
             case 2:
                 return SpiralPattern();
             case 3:
-                return ConvergePattern();
+                return DirectPattern();
             case 4:
                 return RandomPattern();
             default:
