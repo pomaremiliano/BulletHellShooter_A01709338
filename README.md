@@ -171,9 +171,7 @@ Por último, en este mismo script, se definen tres Text Mesh Pro para desplegar 
 ## Resultados
 
 
-* ### Video del juego
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZHZab8FKjRc?si=E28JbJP6HcUoGBES" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+* ### [Video del juego](https://youtu.be/ZHZab8FKjRc?si=PSrmx_uurMY5gvjJ)
 
 ## Conclusiones
 
